@@ -5,11 +5,19 @@ const appSlice = createSlice({
     initialState: { counter: 0 },
     reducers: {
         increment: state => {
-            state.counter -= 1
+            console.log('app.increment is running')
+            state.counter += 1
         },
         decrement: state => {
-            state.counter += 1
+            console.log('app.decrement is running')
+            state.counter -= 1
         }
+    },
+    extraReducers: builder => {
+        builder.addCase('incrementBy', (state, action) => {
+            console.log('extraReducers.increment is running')
+            state.counter += action.payload
+        })
     }
 })
 
